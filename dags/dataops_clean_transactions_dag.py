@@ -11,7 +11,7 @@ with DAG(
     dag_id="dataops_clean_transactions",
     default_args=default_args,
     start_date=datetime(2024, 1, 1),
-    schedule=None,          # manuel trigger (full load)
+    schedule=None,
     catchup=False,
     tags=["dataops", "ssh", "spark_client"],
 ) as dag:
@@ -27,7 +27,7 @@ with DAG(
         http://minio:9000/dataops-bronze/raw/dirty_store_transactions.csv
 
         echo "Running data cleaning script..."
-        python /opt/airflow/dags/apps/clean_transactions.py
+        python /dataops/clean_transactions.py
         """,
     )
 
